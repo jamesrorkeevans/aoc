@@ -8,10 +8,7 @@ def check_policy1(string):
     most = int(string[string.index("-")+1 : string.index(" ")])
     letter = string[string.index(":")-1]
     count_letter = string[string.index(":"):].count(letter)
-    if count_letter <= most and count_letter >= fewest:
-        return True
-    else:
-        return False
+    return count_letter <= most and count_letter >= fewest
 
 passwords = {}
 
@@ -24,12 +21,7 @@ def check_policy2(string):
     first_position = int(string[0:string.index("-")]) + int(string.index(":")) + 1
     second_position = int(string[string.index("-")+1 : string.index(" ")]) + int(string.index(":")) + 1
     letter = string[string.index(":")-1]
-    position1 = (string[first_position] == letter)
-    position2 = (string[second_position] == letter)
-    if position1 != position2:
-        return True
-    else:
-        return False
+    return (string[first_position] == letter) != (string[second_position] == letter)
 
 passwords = {}
 
