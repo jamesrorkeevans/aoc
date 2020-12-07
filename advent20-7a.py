@@ -14,8 +14,6 @@ def rules_dict(input):
         outers[outer_bag] = inners
     return outers
 
-print rules_dict(input)
-
 def can_contain(rules_dict, outer_bag, target_bag):
     if ' other' in rules_dict[outer_bag].keys():
         return False
@@ -25,7 +23,7 @@ def can_contain(rules_dict, outer_bag, target_bag):
         for bag in rules_dict[outer_bag].keys():
             return any(can_contain(rules_dict, bag, target_bag) for bag in rules_dict[outer_bag].keys())
 
-def part1(rules_dict, target_bag):
+def part1(rules_dict):
     return sum(can_contain(rules_dict, rule, 'shiny gold') for rule in rules_dict)
 
 def count_bags(rules_dict, outer_bag):
@@ -34,4 +32,5 @@ def count_bags(rules_dict, outer_bag):
     else:
         return sum((count_bags(rules_dict, bag)+1)*int(rules_dict[outer_bag][bag]) for bag in rules_dict[outer_bag].keys())
 
+print part1(rules_dict(input))
 print count_bags(rules_dict(input), 'shiny gold')
